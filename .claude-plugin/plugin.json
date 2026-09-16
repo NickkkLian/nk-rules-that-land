@@ -1,7 +1,7 @@
 {
   "name": "nk-rules-that-land",
   "description": "Write rules for an AI agent that actually change what it does.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Nick Lian",
     "url": "https://github.com/NickkkLian"
