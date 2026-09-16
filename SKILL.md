@@ -15,6 +15,8 @@ the first time the rule became a step: a coverage check at the end of the proced
 to pass. Same for "never `git add -A`": a line in a document did nothing; a hook that denies it and prints
 the replacement command did.
 
+> **Paths.** Commands in this skill start with `${…SKILL_DIR}`: this skill's own folder, the one that contains this SKILL.md. Claude Code fills it in. If your agent shows the placeholder as written (Codex, Cursor, Gemini CLI and others), replace it with that folder's absolute path before you run the command. Left as it is, it expands to nothing and the path breaks.
+
 ## Three tests for a rule
 
 1. **It names its incident.** A rule without a dated event behind it is an imagined risk; imagined risks
