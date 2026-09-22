@@ -1,8 +1,8 @@
 # Rule format that rules_check.py reads
 
 A rule is any list item or paragraph containing a directive word (must, never, always, do not, don't,
-forbidden, required, prohibited, refuse; 必须, 不许, 禁止, 一律, 绝不, 不得). Tags are searched inside
-the same block (the item plus its indented continuation lines):
+forbidden, required, prohibited, refuse), or one of the Chinese equivalents listed under "Directives in
+Chinese" below. Tags are searched inside the same block (the item plus its indented continuation lines):
 
 ```markdown
 - Never push while the branch is behind origin.
@@ -16,7 +16,22 @@ the same block (the item plus its indented continuation lines):
 `Enforced by:` accepts a path (relative to the rules file's directory or `--base`) or a command. With
 `--run`, `.py/.sh/.mjs` targets are executed with the matching interpreter and must exit 0.
 
-Converting a prohibition into a step:
+## Directives in Chinese
+
+A rules file written in Chinese is read by the same script. The table is the checker's matching range — the
+words `rules_check.py` also accepts as directives, beside the English term each one stands for. Nothing the
+script prints is in Chinese; these words are matched, not written.
+
+| English directive | Chinese equivalent it also matches |
+|---|---|
+| must | 必须 |
+| must not, not allowed | 不许 |
+| forbidden, prohibited | 禁止 |
+| always, without exception | 一律 |
+| never | 绝不 |
+| may not | 不得 |
+
+## Converting a prohibition into a step
 
 | Prohibition | Default action that produces it | Checkable step + trigger |
 |---|---|---|

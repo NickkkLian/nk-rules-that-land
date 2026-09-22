@@ -6,7 +6,8 @@ and is it enforced by something that exists and runs?
     python3 rules_check.py --selftest
 
 A rule is a list item or paragraph that contains a directive (must / never / always / do not / don't / forbidden /
-required / 必须 / 不许 / 禁止 / 一律). Inside the same block the script looks for two tags:
+required / prohibited / refuse), or one of their Chinese equivalents (references/rule-format.md lists them). Inside
+the same block the script looks for two tags:
   incident:   (or why:)          — the dated event that made the rule necessary
   enforced by:  (or gate: / hook: / check:) — a path (relative to --base, default: the rules file's directory) or a command
 Findings:
