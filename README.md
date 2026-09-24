@@ -23,6 +23,14 @@ The full procedure, the boundaries and where the rules came from are in [SKILL.m
 2. It is enforced by something that exists and runs
 3. It is a positive, checkable step at the point where the default happens
 
+## Why it is built this way
+
+**The idea.** A prohibition only works at the moment someone remembers it; the mistake happens during the default action, when nobody is remembering anything.
+
+**Where it came from.** The habit of reading published prompt-engineering advice ("write prohibitions", "explain why") came first; the three tests above were rebuilt from what actually changed behaviour in daily use: incident-backed rules, machine enforcement on the real path, and a checkable step instead of a prohibition.
+
+**Evidence.** What was broken on purpose to show that the self-tests can fail is under [Verify](#verify); what was run end to end, and in which agent, is under [Compatibility](#compatibility).
+
 ## Install
 
 Pick one of four ways: three for Claude Code, one for OpenAI Codex. Skills load when a session starts, so open a **new** session after installing.
