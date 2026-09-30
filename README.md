@@ -11,7 +11,7 @@ Part of [nickkk-skills](https://github.com/NickkkLian/nickkk-skills) — skills 
 
 ## What it does
 
-- Three tests: names its incident · enforced by something that exists and runs · a checkable step where the default action happens, not a prohibition.
+- Three tests: says why (its incident, when there is one) · enforced by something that exists and runs · a checkable step where the default action happens, not a prohibition.
 - `scripts/rules_check.py CLAUDE.md [--run]` audits a rules file: NO-INCIDENT, NO-ENFORCEMENT, MISSING-TARGET, FAILED-RUN, OVERFIT.
 - What to do when the same mistake repeats with the rule in place, and when the rule list keeps growing.
 
@@ -19,7 +19,7 @@ The full procedure, the boundaries and where the rules came from are in [SKILL.m
 
 ## How it works
 
-1. It names its incident
+1. It says why
 2. It is enforced by something that exists and runs
 3. It is a positive, checkable step at the point where the default happens
 
