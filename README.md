@@ -1,27 +1,61 @@
 # nk-rules-that-land
 
-![nk-rules-that-land](https://raw.githubusercontent.com/NickkkLian/nickkk-skills/main/gallery/social/nk-rules-that-land.png)
-
 An agent skill for [Claude Code](https://code.claude.com) and [OpenAI Codex](https://developers.openai.com/codex). Write rules for an AI agent that actually change what it does.
+
+**What you get.** One real run of nk-rules-that-land 0.1.4, copied from the terminal on 2026-09-30:
+
+```text
+$ python3 scripts/rules_check.py demo-rules.md
+demo-rules.md: 2 directives · NO-INCIDENT 1 · NO-ENFORCEMENT 1
+  NO-INCIDENT     L1    - Never push on a Friday.
+  NO-ENFORCEMENT  L1    - Never push on a Friday.
+```
+
+![nk-rules-that-land](https://raw.githubusercontent.com/NickkkLian/nickkk-skills/main/gallery/social/nk-rules-that-land.png)
 
 Part of [nickkk-skills](https://github.com/NickkkLian/nickkk-skills) — skills that stop an AI coding agent's
 "done, tested, safe" from being taken on faith.
 
+## Try it
+
+Nothing is installed and nothing under `~/.claude` changes: clone, run the self-test, run the example (it only writes inside the clone).
+
+```bash
+git clone https://github.com/NickkkLian/nk-rules-that-land && cd nk-rules-that-land
+python3 scripts/rules_check.py --selftest
+printf -- '- Never push on a Friday.\n- Always run the gate before publishing. Why: a page went public unasked. Enforced by: scripts/rules_check.py\n' > demo-rules.md
+python3 scripts/rules_check.py demo-rules.md
+```
+
+The self-test prints:
+
+```text
+rules_check selftest · 13/13 passed
+```
+
+The last command prints the block at the top of this page; its last line is the one below, and its exit code is 1 (non-zero on purpose: it found something).
+
+```text
+  NO-ENFORCEMENT  L1    - Never push on a Friday.
+```
+
 ![nk-rules-that-land demo: before and after](https://raw.githubusercontent.com/NickkkLian/nickkk-skills/main/gallery/nk-rules-that-land.gif)
+
+The demo above is a rendering of an earlier run and cuts its longest lines short; the block at the top of this page is a full run of this version.
 
 ## What it does
 
 - Three tests: says why (its incident, when there is one) · enforced by something that exists and runs · a checkable step where the default action happens, not a prohibition.
-- `scripts/rules_check.py CLAUDE.md [--run]` audits a rules file: NO-INCIDENT, NO-ENFORCEMENT, MISSING-TARGET, FAILED-RUN, OVERFIT.
+- `scripts/rules_check.py CLAUDE.md [--run]` checks one convention: does each rule carry a reason tag (`Incident:` / `Why:`) and an enforcement tag (`Enforced by:`) that points at something that exists. On a file that never used the tags every rule is listed, and the output says so; `--why-tags` / `--enforced-tags` add your own words. It does not judge whether a rule is good.
 - What to do when the same mistake repeats with the rule in place, and when the rule list keeps growing.
 
 The full procedure, the boundaries and where the rules came from are in [SKILL.md](SKILL.md).
 
 ## How it works
 
-1. It says why
-2. It is enforced by something that exists and runs
-3. It is a positive, checkable step at the point where the default happens
+1. It says why. A rule whose reason nobody can state is an imagined risk; imagined risks fire on normal work, and a few false alarms teach the reader to ignore all alarms.
+2. It is enforced by something that exists and runs.
+3. It is a positive, checkable step at the point where the default happens, not a "never".
 
 ## Why it is built this way
 
@@ -108,9 +142,14 @@ In this skill's Codex run, every call into the skill folder's scripts/ used that
 python3 scripts/rules_check.py --selftest
 ```
 
-Standard library only, Python 3.9+. Before publishing, the guarded lines of each script were
-mutated one at a time in a sandbox copy and the self-test was confirmed to go red on the named
-assertion, without a traceback; the unmutated control stayed green.
+Standard library only, Python 3.9+. On 2026-09-30 every self-test above passed, and
+`breakcheck.py` from [nk-breakable-selftest](https://github.com/NickkkLian/nk-breakable-selftest) broke each script on purpose in a sandbox copy:
+
+- `rules_check.py`: 9 lines broken one at a time; each turned the self-test red without a traceback.
+
+The unmutated control stayed green every time. Only lines that record a finding, raise, or return a failing exit code
+were broken (the tool's pattern, or the hand-written list); a line number refers to the script as shipped in this version.
+This shows those lines are covered. It does not show that nothing else can fail.
 
 ## Limits
 
