@@ -1,3 +1,4 @@
+> Archived 2026-10-17: a plain prompt to a plain agent does this as well (fair test, 3 runs each). Kept for reference; no further updates.
 # nk-rules-that-land
 
 An agent skill for [Claude Code](https://code.claude.com) and [OpenAI Codex](https://developers.openai.com/codex). Write rules for an AI agent that actually change what it does.
